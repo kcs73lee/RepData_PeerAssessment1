@@ -17,9 +17,9 @@ Load and read dataset and create histogram of steps by day
     stepsbyday<-aggregate(steps~date, act, sum)
     plot1<-hist(stepsbyday$steps)
 
-![](RepResearchCourseProject1_files/figure-markdown_strict/plot1-1.png)
+![](RepResearchCourseProject1_files/figure-markdown_strict/unnamed-chunk-1-1.png)
 
-    plot1
+    print(plot1)
 
     ## $breaks
     ## [1]     0  5000 10000 15000 20000 25000
@@ -50,9 +50,9 @@ What is the average daily activity pattern?
     steppattern<-aggregate(steps~interval, act, mean)
     plot2<-plot(steppattern$interval, steppattern$steps, type ="l", main="Average daily activity pattern")
 
-![](RepResearchCourseProject1_files/figure-markdown_strict/plot2-1.png)
+![](RepResearchCourseProject1_files/figure-markdown_strict/unnamed-chunk-2-1.png)
 
-    plot2
+    print(plot2)
 
     ## NULL
 
@@ -86,9 +86,9 @@ Imputting missing values
     stepsbyday2<-aggregate(steps~date, act2, sum)
     plot3<-hist(stepsbyday2$steps)
 
-![](RepResearchCourseProject1_files/figure-markdown_strict/plot3-1.png)
+![](RepResearchCourseProject1_files/figure-markdown_strict/unnamed-chunk-3-1.png)
 
-    plot3
+    print(plot3)
 
     ## $breaks
     ## [1]     0  5000 10000 15000 20000 25000
@@ -141,6 +141,6 @@ weekends?
     weekplot<-ggplot(act3, aes(interval, steps,fill=week))+
       geom_line()+
       facet_wrap(~week,nrow=2)+ ggtitle("Average daily steps by week type")
-    weekplot
+    print(weekplot)
 
-![](RepResearchCourseProject1_files/figure-markdown_strict/weekplot-1.png)
+![](RepResearchCourseProject1_files/figure-markdown_strict/unnamed-chunk-4-1.png)
