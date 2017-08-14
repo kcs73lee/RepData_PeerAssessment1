@@ -1,6 +1,6 @@
 What is the mean total number of steps taken per day?
 
-Load and read dataset and create histogram of steps by day
+Load and read dataset
 
     ##unzipped file in working directory. Made wd the folder. 
     act<- read.csv("activity.csv")
@@ -15,9 +15,12 @@ Load and read dataset and create histogram of steps by day
     ## 6    NA 2012-10-01       25
 
     stepsbyday<-aggregate(steps~date, act, sum)
+
+Create histogram of steps taken per day
+
     plot1<-hist(stepsbyday$steps)
 
-![](RepResearchCourseProject1_files/figure-markdown_strict/unnamed-chunk-1-1.png)
+![](RepResearchCourseproject1_files/figure-markdown_strict/unnamed-chunk-2-1.png)
 
     print(plot1)
 
@@ -42,6 +45,8 @@ Load and read dataset and create histogram of steps by day
     ## attr(,"class")
     ## [1] "histogram"
 
+Calculate mean and median steps taken per day
+
     meansteps<-mean(stepsbyday$steps)
     mediansteps<-median(stepsbyday$steps)
 
@@ -50,11 +55,13 @@ What is the average daily activity pattern?
     steppattern<-aggregate(steps~interval, act, mean)
     plot2<-plot(steppattern$interval, steppattern$steps, type ="l", main="Average daily activity pattern")
 
-![](RepResearchCourseProject1_files/figure-markdown_strict/unnamed-chunk-2-1.png)
+![](RepResearchCourseproject1_files/figure-markdown_strict/unnamed-chunk-4-1.png)
 
     print(plot2)
 
     ## NULL
+
+Which 5 minute interval has max number of steps?
 
     which.max(steppattern$steps)
 
@@ -67,7 +74,9 @@ Imputting missing values
 
     ## [1] 2304
 
-    ##create new data set with missing values filled in
+create new data set with missing values filled in
+-------------------------------------------------
+
     act2<-act
     missval<-is.na(act2$steps)
     actinterval<-tapply(act2$steps, act2$interval, mean, na.rm=TRUE) ##used mean to fill
@@ -82,11 +91,13 @@ Imputting missing values
     ## 5 0.0754717 2012-10-01       20
     ## 6 2.0943396 2012-10-01       25
 
-    ##make histogram and compute mean and median
+make histogram and compute mean and median
+------------------------------------------
+
     stepsbyday2<-aggregate(steps~date, act2, sum)
     plot3<-hist(stepsbyday2$steps)
 
-![](RepResearchCourseProject1_files/figure-markdown_strict/unnamed-chunk-3-1.png)
+![](RepResearchCourseproject1_files/figure-markdown_strict/unnamed-chunk-8-1.png)
 
     print(plot3)
 
@@ -137,10 +148,12 @@ weekends?
     ## 5       20 Weekdayact 0.09895178
     ## 6       25 Weekdayact 1.59035639
 
+Plot
+
     library(ggplot2)
     weekplot<-ggplot(act3, aes(interval, steps,fill=week))+
       geom_line()+
       facet_wrap(~week,nrow=2)+ ggtitle("Average daily steps by week type")
     print(weekplot)
 
-![](RepResearchCourseProject1_files/figure-markdown_strict/unnamed-chunk-4-1.png)
+![](RepResearchCourseproject1_files/figure-markdown_strict/unnamed-chunk-11-1.png)
