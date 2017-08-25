@@ -1,10 +1,10 @@
 ---
 title: "RepResearchCourseProject1"
-author: "K C Saelee"
-date: "August 9, 2017"
-output: 
-  md_document: 
-  variant: markdown_github
+author: K C Saelee
+date: August 9, 2017
+output:
+  md_document:
+    variant: markdown_github
 ---
 
 What is  the mean total number of steps taken per day?
@@ -18,8 +18,7 @@ stepsbyday<-aggregate(steps~date, act, sum)
 ```
 Create histogram of steps taken per day
 ```{r, echo=TRUE}
-plot1<-hist(stepsbyday$steps)
-print(plot1)
+hist(stepsbyday$steps)
 ```
 Calculate mean and median steps taken per day
 ```{r, echo=TRUE}
